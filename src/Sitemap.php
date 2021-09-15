@@ -42,5 +42,9 @@ class Sitemap
     {
         return $this->list;
     }
+    public function getListGroup(): array
+    {
+        return $this->listGroup;
+    }
 
 }
