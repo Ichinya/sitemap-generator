@@ -42,9 +42,24 @@ class Sitemap
     {
         return $this->list;
     }
+
     public function getListGroup(): array
     {
         return $this->listGroup;
     }
 
+    public function render($use_xml = false)
+    {
+        ob_start();
+        $urls = $this->list;
+        include(__DIR__ . '/../view/sitemap.php');
+        $xml = ob_get_contents();
+        ob_end_clean();
+        if ($use_xml) {
+            header('Content-Type: application/xml; charset=utf-8');
+            echo $xml;
+            exit();
+        }
+        return $xml;
+    }
 }
